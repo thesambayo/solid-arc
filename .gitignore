@@ -1,0 +1,26 @@
+# OS
+.DS_Store
+Thumbs.db
+
+
+# IDEs and editors
+.idea/
+.vscode/*
+.zed/
+*.sublime-workspace
+.history/
+.project
+.classpath
+*.launch
+.settings/
+
+# AI tooling
+.claude/
+.gemini/
+CLAUDE.md
+
+
+node_modules
+dist
+.tanstack
+.vite

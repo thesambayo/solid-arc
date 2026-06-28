@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./foundation.css";
+
+/* ═══════════════════════════════════════════════════════════════
+   Argus design tokens — Tailwind v4 @theme + base values
+
+   The lean palette. shadcn-flavored vocabulary
+   (background, foreground, brand, *-foreground) so any
+   shadcn snippet copies in cleanly. Status colors use
+   conventional naming (success / warning / destructive).
+
+   For "soft" backgrounds (pale pill bg, hover tint) use Tailwind
+   opacity modifiers: `bg-success/15`, `bg-muted`, etc.
+   ═══════════════════════════════════════════════════════════════ */
+
+@theme inline {
+  /* Surfaces */
+  --color-background: var(--background);
+  --color-muted: var(--muted);
+  --color-popover: var(--popover);
+
+  /* Text — 3 levels */
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Border & ring */
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  /* Brand (indigo) */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+
+  /* Status — saturated (text / icon / filled badge) */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+
+  /* Status — subtle pair (pale bg + matching border) for soft alerts/toasts */
+  --color-success-subtle: var(--success-subtle);
+  --color-success-border: var(--success-border);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-warning-border: var(--warning-border);
+  --color-destructive-subtle: var(--destructive-subtle);
+  --color-destructive-border: var(--destructive-border);
+
+  /* Fonts */
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: oklch(20% 0.01 80);
+
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* Border & ring */
+  --border: oklch(92.5% 0.005 80);
+  --ring: oklch(0.708 0 0);
+
+  /* Brand (tailwind sky) */
+  --brand: oklch(0.5 0.134 242.749);
+  --brand-foreground: oklch(0.977 0.013 236.62);
+
+  --success: oklch(50% 0.14 148);
+  --success-subtle: oklch(96% 0.04 148);
+  --success-border: oklch(88% 0.08 148);
+
+  --warning: oklch(55% 0.13 78);
+  --warning-subtle: oklch(97% 0.05 78);
+  --warning-border: oklch(88% 0.1 78);
+
+  --destructive: oklch(0.58 0.24 27.33);
+  --destructive-subtle: oklch(97% 0.03 27);
+  --destructive-border: oklch(88% 0.1 27);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer base {
+  * {
+    @apply box-border border-border outline-ring/50;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0.01;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: var(--height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    height: var(--height);
+  }
+  to {
+    opacity: 0.01;
+    height: 0;
+  }
+}
+
+[data-scope="accordion"][data-part="item-content"][data-state="open"] {
+  animation: slideDown 250ms ease-in-out;
+}
+
+[data-scope="accordion"][data-part="item-content"][data-state="closed"] {
+  animation: slideUp 200ms ease-in-out;
+}

@@ -1,0 +1,15 @@
+export {
+  TagsInput,
+  TagsInputRoot,
+  TagsInputLabel,
+  TagsInputControl,
+  TagsInputItem,
+  TagsInputItemPreview,
+  TagsInputItemText,
+  TagsInputItemDeleteTrigger,
+  TagsInputItemInput,
+  TagsInputInput,
+  TagsInputClearTrigger,
+  TagsInputHiddenInput,
+  TagsInputContext,
+} from "./tags-input";
