@@ -45,6 +45,7 @@ import { Route as PreviewsButtonGroupsRouteImport } from './routes/previews/butt
 import { Route as PreviewsButtonRouteImport } from './routes/previews/button'
 import { Route as PreviewsBadgeRouteImport } from './routes/previews/badge'
 import { Route as PreviewsAvatarRouteImport } from './routes/previews/avatar'
+import { Route as PreviewsAttachmentRouteImport } from './routes/previews/attachment'
 import { Route as PreviewsAlertRouteImport } from './routes/previews/alert'
 import { Route as PreviewsAccordionRouteImport } from './routes/previews/accordion'
 import { Route as PreviewsFormsIndexRouteImport } from './routes/previews/forms/index'
@@ -239,6 +240,11 @@ const PreviewsAvatarRoute = PreviewsAvatarRouteImport.update({
   path: '/avatar',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
+const PreviewsAttachmentRoute = PreviewsAttachmentRouteImport.update({
+  id: '/attachment',
+  path: '/attachment',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
 const PreviewsAlertRoute = PreviewsAlertRouteImport.update({
   id: '/alert',
   path: '/alert',
@@ -314,6 +320,7 @@ export interface FileRoutesByFullPath {
   '/previews': typeof PreviewsRouteRouteWithChildren
   '/previews/accordion': typeof PreviewsAccordionRoute
   '/previews/alert': typeof PreviewsAlertRoute
+  '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
   '/previews/button': typeof PreviewsButtonRoute
@@ -364,6 +371,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/previews/accordion': typeof PreviewsAccordionRoute
   '/previews/alert': typeof PreviewsAlertRoute
+  '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
   '/previews/button': typeof PreviewsButtonRoute
@@ -415,6 +423,7 @@ export interface FileRoutesById {
   '/previews': typeof PreviewsRouteRouteWithChildren
   '/previews/accordion': typeof PreviewsAccordionRoute
   '/previews/alert': typeof PreviewsAlertRoute
+  '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
   '/previews/button': typeof PreviewsButtonRoute
@@ -468,6 +477,7 @@ export interface FileRouteTypes {
     | '/previews'
     | '/previews/accordion'
     | '/previews/alert'
+    | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
     | '/previews/button'
@@ -518,6 +528,7 @@ export interface FileRouteTypes {
     | '/'
     | '/previews/accordion'
     | '/previews/alert'
+    | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
     | '/previews/button'
@@ -568,6 +579,7 @@ export interface FileRouteTypes {
     | '/previews'
     | '/previews/accordion'
     | '/previews/alert'
+    | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
     | '/previews/button'
@@ -874,6 +886,13 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof PreviewsAvatarRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
+    '/previews/attachment': {
+      id: '/previews/attachment'
+      path: '/attachment'
+      fullPath: '/previews/attachment'
+      preLoaderRoute: typeof PreviewsAttachmentRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
     '/previews/alert': {
       id: '/previews/alert'
       path: '/alert'
@@ -1003,6 +1022,7 @@ const PreviewsFormsRouteWithChildren = PreviewsFormsRoute._addFileChildren(
 interface PreviewsRouteRouteChildren {
   PreviewsAccordionRoute: typeof PreviewsAccordionRoute
   PreviewsAlertRoute: typeof PreviewsAlertRoute
+  PreviewsAttachmentRoute: typeof PreviewsAttachmentRoute
   PreviewsAvatarRoute: typeof PreviewsAvatarRoute
   PreviewsBadgeRoute: typeof PreviewsBadgeRoute
   PreviewsButtonRoute: typeof PreviewsButtonRoute
@@ -1042,6 +1062,7 @@ interface PreviewsRouteRouteChildren {
 const PreviewsRouteRouteChildren: PreviewsRouteRouteChildren = {
   PreviewsAccordionRoute: PreviewsAccordionRoute,
   PreviewsAlertRoute: PreviewsAlertRoute,
+  PreviewsAttachmentRoute: PreviewsAttachmentRoute,
   PreviewsAvatarRoute: PreviewsAvatarRoute,
   PreviewsBadgeRoute: PreviewsBadgeRoute,
   PreviewsButtonRoute: PreviewsButtonRoute,

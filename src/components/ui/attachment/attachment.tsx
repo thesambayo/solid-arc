@@ -263,10 +263,10 @@ function AttachmentGroup(props: ComponentProps<"div">) {
     <div
       data-slot="attachment-group"
       class={cn(
-        "flex snap-x gap-3 overflow-x-auto scroll-px-1 py-1",
-        "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-        "[mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-12px),transparent)]",
-        "[&>*]:snap-start [&>*]:shrink-0",
+        "flex snap-x scroll-px-1 gap-3 overflow-x-auto py-1",
+        "scrollbar-none [&::-webkit-scrollbar]:hidden",
+        "mask-[linear-gradient(to_right,transparent,black_12px,black_calc(100%-12px),transparent)]",
+        "*:shrink-0 *:snap-start",
         local.class,
       )}
       {...rest}

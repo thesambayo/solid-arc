@@ -10,6 +10,7 @@ export const Route = createFileRoute("/previews")({
 const components = [
   "accordion",
   "alert",
+  "attachment",
   "avatar",
   "badge",
   "button",

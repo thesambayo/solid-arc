@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
 const components = [
   "accordion",
   "alert",
+  "attachment",
   "avatar",
   "badge",
   "button",
