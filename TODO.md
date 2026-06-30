@@ -19,9 +19,28 @@ can be pulled into other projects instead of living only inside this app.
 ### Missing components
 Ark UI primitives / common shadcn components not yet ported.
 - [x] Separator  *(implemented — component, preview, sidebar entry)*
-- [ ] Progress
+- [x] Attachment  *(implemented — media/content/actions/trigger/group, states, preview)*
+- [x] Progress  *(implemented — root/label/value-text/track/range, h+v orientation, indeterminate; preview, sidebar entry)*
 - [ ] Skeleton
-- [ ] Collapsible
+- [x] Collapsible  *(implemented — root/trigger/indicator/content, height + partial-collapse animation, rotating indicator, disabled/nested/controlled; preview, sidebar entry)*
+- [x] Bubble  *(new shadcn component — presentational; root/content/reactions/group, 7 variants, start/end align, asChild link/button content, reactions side/align, collapsible compose; preview, sidebar entry)*
+- [x] Marker  *(new shadcn component — presentational; root/icon/content, default/border/separator variants, asChild link/button root, role=status; preview, sidebar entry. Shimmer example skipped — utility not in repo)*
+- [x] Message  *(new shadcn component — presentational row layout; group/avatar/content/header/footer, start/end align, avatar footer-shift, ghost px-0; composes Avatar+Bubble+Marker; preview, sidebar entry. Also added `group-data-[align=end]/message:self-end` to Bubble)*
+- [ ] **MessageScroller — parked (big: it's a scroll-behavior engine, not a
+      styling port).** Unlike Bubble/Marker/Message, its value is the headless
+      logic in shadcn's `@shadcn/react/message-scroller` package — there is **no
+      Ark/Solid primitive**, so it'd be a from-scratch reimplementation of the
+      scroll state machine in SolidJS (~300–500 lines). Parts to build:
+      `MessageScrollerProvider` (state owner) + `MessageScroller` (frame) +
+      `Viewport` + `Content` + `Item` (with `messageId` + `scrollAnchor`) +
+      `Button`, plus hooks `useMessageScroller` (scrollToEnd/Start/Message),
+      `useMessageScrollerVisibility` (currentAnchorId/visibleMessageIds),
+      `useMessageScrollerScrollable` (start/end edges). Behaviors: follow live
+      edge only while at it, release on any interaction, anchor new turn near
+      top with `scrollPreviousItemPeek`, `defaultScrollPosition="last-anchor"`,
+      `preserveScrollOnPrepend` (the fiddly one), `data-autoscrolling`,
+      `content-visibility:auto` rows. Composes the Message component as rows.
+      **Decide scope when picking up:** core-behavior MVP vs full fidelity.
 - [ ] Breadcrumb
 - [ ] Carousel
 - [ ] Menubar
@@ -51,18 +70,26 @@ Evidence noted per item; nothing here is fixed yet.
       Tokenize (e.g. `bg-overlay`, `border-border`).
 
 ### Consistency
-- [ ] **`data-slot` missing** on a few components while the rest follow the
-      shadcn `data-slot` convention: `button`, `spinner`, `toast`
-      (and `separator`, which is empty).
+- [x] **`data-slot`** added to `button` and `spinner`. (`toast` already had it
+      on every part in `toaster.tsx`; the `toast.ts` singleton has no DOM.)
 - [ ] **No `ui/index.ts` barrel.** Every import is by full path
       (`~/components/ui/button`). A barrel (or per-component barrels only) is a
       DX choice worth making explicit — and matters for the distribution plan.
 - [x] **Empty `ui/separator/` directory** — now implemented.
+- [ ] **Combobox `resetFilterOnOpen` — promote to module export?** After a
+      value is selected the input holds its label and the collection stays
+      filtered to it, so reopening shows only that one item. Fix is to reset the
+      filter when the popup opens via click (`input-click`/`trigger-click`, not
+      `input-change`). Currently a per-preview helper in
+      `routes/previews/combobox.tsx`. Can't live in the `Combobox` wrapper (it
+      doesn't own the collection/`filter`). **Decide:** export
+      `resetFilterOnOpen(filter)` from `ui/combobox` for consumers to wire as
+      `onOpenChange={resetFilterOnOpen(filter)}`, or leave as a documented
+      pattern.
 
 ### Docs / hygiene
-- [ ] **README is the Solid-CLI stub.** Replace with real intro, stack
-      (TanStack Router/Form, Tailwind v4, Ark UI), dev (`port 9500`), and a
-      pointer to the `/previews` gallery.
+- [x] **README** rewritten — real intro, stack, scripts, dev (`port 9500`),
+      `/previews` pointer, layout + conventions.
 
 ### Verified OK (not issues)
 - Interactive components (dropdown-menu, combobox, command, popover, select,

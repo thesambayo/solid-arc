@@ -1,13 +1,20 @@
 import { Combobox as ComboboxPrimitive } from "@ark-ui/solid/combobox";
 import { CheckIcon, ChevronsUpDownIcon, XIcon } from "lucide-solid";
-import { type ComponentProps, splitProps } from "solid-js";
+import { type ComponentProps, mergeProps, splitProps } from "solid-js";
 import { Portal } from "solid-js/web";
 
 import { cn } from "../../../lib/cn";
 
 function Combobox<T>(props: ComponentProps<typeof ComboboxPrimitive.Root<T>>) {
-  return <ComboboxPrimitive.Root data-slot="combobox" {...props} />;
+  // Open the popup on click by default (Ark defaults this to false); still
+  // overridable per-instance via `openOnClick={false}`.
+  const merged = mergeProps({ openOnClick: true }, props);
+  return <ComboboxPrimitive.Root data-slot="combobox" {...merged} />;
 }
+
+// Unstyled — re-exported so consumers can read combobox state (selected items,
+// input value, etc.) without reaching into @ark-ui directly.
+const ComboboxContext = ComboboxPrimitive.Context;
 
 function ComboboxLabel(props: ComponentProps<typeof ComboboxPrimitive.Label>) {
   const [local, rest] = splitProps(props, ["class"]);
@@ -106,12 +113,26 @@ function ComboboxContent(
   );
 }
 
-function ComboboxEmpty(props: ComponentProps<"div">) {
+// Ark's Empty renders its children ONLY when the collection is empty — so it
+// must be the real primitive, not a plain <div> (which would always show).
+function ComboboxEmpty(props: ComponentProps<typeof ComboboxPrimitive.Empty>) {
   const [local, rest] = splitProps(props, ["class"]);
   return (
-    <div
+    <ComboboxPrimitive.Empty
       data-slot="combobox-empty"
       class={cn("py-6 text-center text-sm text-muted-foreground", local.class)}
+      {...rest}
+    />
+  );
+}
+
+// Optional scroll container for the items; pairs with Empty for large lists.
+function ComboboxList(props: ComponentProps<typeof ComboboxPrimitive.List>) {
+  const [local, rest] = splitProps(props, ["class"]);
+  return (
+    <ComboboxPrimitive.List
+      data-slot="combobox-list"
+      class={cn(local.class)}
       {...rest}
     />
   );
@@ -192,6 +213,7 @@ function ComboboxItemIndicator(
 
 export {
   Combobox,
+  ComboboxContext,
   ComboboxLabel,
   ComboboxControl,
   ComboboxInput,
@@ -199,6 +221,7 @@ export {
   ComboboxClearTrigger,
   ComboboxContent,
   ComboboxEmpty,
+  ComboboxList,
   ComboboxItemGroup,
   ComboboxItemGroupLabel,
   ComboboxItem,

@@ -24,8 +24,11 @@ import { Route as PreviewsSheetRouteImport } from './routes/previews/sheet'
 import { Route as PreviewsSeparatorRouteImport } from './routes/previews/separator'
 import { Route as PreviewsSelectRouteImport } from './routes/previews/select'
 import { Route as PreviewsRadioGroupRouteImport } from './routes/previews/radio-group'
+import { Route as PreviewsProgressRouteImport } from './routes/previews/progress'
 import { Route as PreviewsPopoverRouteImport } from './routes/previews/popover'
 import { Route as PreviewsPaginationRouteImport } from './routes/previews/pagination'
+import { Route as PreviewsMessageRouteImport } from './routes/previews/message'
+import { Route as PreviewsMarkerRouteImport } from './routes/previews/marker'
 import { Route as PreviewsKbdRouteImport } from './routes/previews/kbd'
 import { Route as PreviewsInputGroupRouteImport } from './routes/previews/input-group'
 import { Route as PreviewsInputRouteImport } from './routes/previews/input'
@@ -39,10 +42,12 @@ import { Route as PreviewsDialogRouteImport } from './routes/previews/dialog'
 import { Route as PreviewsDatePickerRouteImport } from './routes/previews/date-picker'
 import { Route as PreviewsCommandRouteImport } from './routes/previews/command'
 import { Route as PreviewsComboboxRouteImport } from './routes/previews/combobox'
+import { Route as PreviewsCollapsibleRouteImport } from './routes/previews/collapsible'
 import { Route as PreviewsCheckboxRouteImport } from './routes/previews/checkbox'
 import { Route as PreviewsCardRouteImport } from './routes/previews/card'
 import { Route as PreviewsButtonGroupsRouteImport } from './routes/previews/button-groups'
 import { Route as PreviewsButtonRouteImport } from './routes/previews/button'
+import { Route as PreviewsBubbleRouteImport } from './routes/previews/bubble'
 import { Route as PreviewsBadgeRouteImport } from './routes/previews/badge'
 import { Route as PreviewsAvatarRouteImport } from './routes/previews/avatar'
 import { Route as PreviewsAttachmentRouteImport } from './routes/previews/attachment'
@@ -135,6 +140,11 @@ const PreviewsRadioGroupRoute = PreviewsRadioGroupRouteImport.update({
   path: '/radio-group',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
+const PreviewsProgressRoute = PreviewsProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
 const PreviewsPopoverRoute = PreviewsPopoverRouteImport.update({
   id: '/popover',
   path: '/popover',
@@ -143,6 +153,16 @@ const PreviewsPopoverRoute = PreviewsPopoverRouteImport.update({
 const PreviewsPaginationRoute = PreviewsPaginationRouteImport.update({
   id: '/pagination',
   path: '/pagination',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
+const PreviewsMessageRoute = PreviewsMessageRouteImport.update({
+  id: '/message',
+  path: '/message',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
+const PreviewsMarkerRoute = PreviewsMarkerRouteImport.update({
+  id: '/marker',
+  path: '/marker',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
 const PreviewsKbdRoute = PreviewsKbdRouteImport.update({
@@ -210,6 +230,11 @@ const PreviewsComboboxRoute = PreviewsComboboxRouteImport.update({
   path: '/combobox',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
+const PreviewsCollapsibleRoute = PreviewsCollapsibleRouteImport.update({
+  id: '/collapsible',
+  path: '/collapsible',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
 const PreviewsCheckboxRoute = PreviewsCheckboxRouteImport.update({
   id: '/checkbox',
   path: '/checkbox',
@@ -228,6 +253,11 @@ const PreviewsButtonGroupsRoute = PreviewsButtonGroupsRouteImport.update({
 const PreviewsButtonRoute = PreviewsButtonRouteImport.update({
   id: '/button',
   path: '/button',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
+const PreviewsBubbleRoute = PreviewsBubbleRouteImport.update({
+  id: '/bubble',
+  path: '/bubble',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
 const PreviewsBadgeRoute = PreviewsBadgeRouteImport.update({
@@ -323,10 +353,12 @@ export interface FileRoutesByFullPath {
   '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
+  '/previews/bubble': typeof PreviewsBubbleRoute
   '/previews/button': typeof PreviewsButtonRoute
   '/previews/button-groups': typeof PreviewsButtonGroupsRoute
   '/previews/card': typeof PreviewsCardRoute
   '/previews/checkbox': typeof PreviewsCheckboxRoute
+  '/previews/collapsible': typeof PreviewsCollapsibleRoute
   '/previews/combobox': typeof PreviewsComboboxRoute
   '/previews/command': typeof PreviewsCommandRoute
   '/previews/date-picker': typeof PreviewsDatePickerRoute
@@ -340,8 +372,11 @@ export interface FileRoutesByFullPath {
   '/previews/input': typeof PreviewsInputRoute
   '/previews/input-group': typeof PreviewsInputGroupRoute
   '/previews/kbd': typeof PreviewsKbdRoute
+  '/previews/marker': typeof PreviewsMarkerRoute
+  '/previews/message': typeof PreviewsMessageRoute
   '/previews/pagination': typeof PreviewsPaginationRoute
   '/previews/popover': typeof PreviewsPopoverRoute
+  '/previews/progress': typeof PreviewsProgressRoute
   '/previews/radio-group': typeof PreviewsRadioGroupRoute
   '/previews/select': typeof PreviewsSelectRoute
   '/previews/separator': typeof PreviewsSeparatorRoute
@@ -374,10 +409,12 @@ export interface FileRoutesByTo {
   '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
+  '/previews/bubble': typeof PreviewsBubbleRoute
   '/previews/button': typeof PreviewsButtonRoute
   '/previews/button-groups': typeof PreviewsButtonGroupsRoute
   '/previews/card': typeof PreviewsCardRoute
   '/previews/checkbox': typeof PreviewsCheckboxRoute
+  '/previews/collapsible': typeof PreviewsCollapsibleRoute
   '/previews/combobox': typeof PreviewsComboboxRoute
   '/previews/command': typeof PreviewsCommandRoute
   '/previews/date-picker': typeof PreviewsDatePickerRoute
@@ -390,8 +427,11 @@ export interface FileRoutesByTo {
   '/previews/input': typeof PreviewsInputRoute
   '/previews/input-group': typeof PreviewsInputGroupRoute
   '/previews/kbd': typeof PreviewsKbdRoute
+  '/previews/marker': typeof PreviewsMarkerRoute
+  '/previews/message': typeof PreviewsMessageRoute
   '/previews/pagination': typeof PreviewsPaginationRoute
   '/previews/popover': typeof PreviewsPopoverRoute
+  '/previews/progress': typeof PreviewsProgressRoute
   '/previews/radio-group': typeof PreviewsRadioGroupRoute
   '/previews/select': typeof PreviewsSelectRoute
   '/previews/separator': typeof PreviewsSeparatorRoute
@@ -426,10 +466,12 @@ export interface FileRoutesById {
   '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
+  '/previews/bubble': typeof PreviewsBubbleRoute
   '/previews/button': typeof PreviewsButtonRoute
   '/previews/button-groups': typeof PreviewsButtonGroupsRoute
   '/previews/card': typeof PreviewsCardRoute
   '/previews/checkbox': typeof PreviewsCheckboxRoute
+  '/previews/collapsible': typeof PreviewsCollapsibleRoute
   '/previews/combobox': typeof PreviewsComboboxRoute
   '/previews/command': typeof PreviewsCommandRoute
   '/previews/date-picker': typeof PreviewsDatePickerRoute
@@ -443,8 +485,11 @@ export interface FileRoutesById {
   '/previews/input': typeof PreviewsInputRoute
   '/previews/input-group': typeof PreviewsInputGroupRoute
   '/previews/kbd': typeof PreviewsKbdRoute
+  '/previews/marker': typeof PreviewsMarkerRoute
+  '/previews/message': typeof PreviewsMessageRoute
   '/previews/pagination': typeof PreviewsPaginationRoute
   '/previews/popover': typeof PreviewsPopoverRoute
+  '/previews/progress': typeof PreviewsProgressRoute
   '/previews/radio-group': typeof PreviewsRadioGroupRoute
   '/previews/select': typeof PreviewsSelectRoute
   '/previews/separator': typeof PreviewsSeparatorRoute
@@ -480,10 +525,12 @@ export interface FileRouteTypes {
     | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
+    | '/previews/bubble'
     | '/previews/button'
     | '/previews/button-groups'
     | '/previews/card'
     | '/previews/checkbox'
+    | '/previews/collapsible'
     | '/previews/combobox'
     | '/previews/command'
     | '/previews/date-picker'
@@ -497,8 +544,11 @@ export interface FileRouteTypes {
     | '/previews/input'
     | '/previews/input-group'
     | '/previews/kbd'
+    | '/previews/marker'
+    | '/previews/message'
     | '/previews/pagination'
     | '/previews/popover'
+    | '/previews/progress'
     | '/previews/radio-group'
     | '/previews/select'
     | '/previews/separator'
@@ -531,10 +581,12 @@ export interface FileRouteTypes {
     | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
+    | '/previews/bubble'
     | '/previews/button'
     | '/previews/button-groups'
     | '/previews/card'
     | '/previews/checkbox'
+    | '/previews/collapsible'
     | '/previews/combobox'
     | '/previews/command'
     | '/previews/date-picker'
@@ -547,8 +599,11 @@ export interface FileRouteTypes {
     | '/previews/input'
     | '/previews/input-group'
     | '/previews/kbd'
+    | '/previews/marker'
+    | '/previews/message'
     | '/previews/pagination'
     | '/previews/popover'
+    | '/previews/progress'
     | '/previews/radio-group'
     | '/previews/select'
     | '/previews/separator'
@@ -582,10 +637,12 @@ export interface FileRouteTypes {
     | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
+    | '/previews/bubble'
     | '/previews/button'
     | '/previews/button-groups'
     | '/previews/card'
     | '/previews/checkbox'
+    | '/previews/collapsible'
     | '/previews/combobox'
     | '/previews/command'
     | '/previews/date-picker'
@@ -599,8 +656,11 @@ export interface FileRouteTypes {
     | '/previews/input'
     | '/previews/input-group'
     | '/previews/kbd'
+    | '/previews/marker'
+    | '/previews/message'
     | '/previews/pagination'
     | '/previews/popover'
+    | '/previews/progress'
     | '/previews/radio-group'
     | '/previews/select'
     | '/previews/separator'
@@ -739,6 +799,13 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof PreviewsRadioGroupRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
+    '/previews/progress': {
+      id: '/previews/progress'
+      path: '/progress'
+      fullPath: '/previews/progress'
+      preLoaderRoute: typeof PreviewsProgressRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
     '/previews/popover': {
       id: '/previews/popover'
       path: '/popover'
@@ -751,6 +818,20 @@ declare module '@tanstack/solid-router' {
       path: '/pagination'
       fullPath: '/previews/pagination'
       preLoaderRoute: typeof PreviewsPaginationRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
+    '/previews/message': {
+      id: '/previews/message'
+      path: '/message'
+      fullPath: '/previews/message'
+      preLoaderRoute: typeof PreviewsMessageRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
+    '/previews/marker': {
+      id: '/previews/marker'
+      path: '/marker'
+      fullPath: '/previews/marker'
+      preLoaderRoute: typeof PreviewsMarkerRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
     '/previews/kbd': {
@@ -844,6 +925,13 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof PreviewsComboboxRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
+    '/previews/collapsible': {
+      id: '/previews/collapsible'
+      path: '/collapsible'
+      fullPath: '/previews/collapsible'
+      preLoaderRoute: typeof PreviewsCollapsibleRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
     '/previews/checkbox': {
       id: '/previews/checkbox'
       path: '/checkbox'
@@ -870,6 +958,13 @@ declare module '@tanstack/solid-router' {
       path: '/button'
       fullPath: '/previews/button'
       preLoaderRoute: typeof PreviewsButtonRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
+    '/previews/bubble': {
+      id: '/previews/bubble'
+      path: '/bubble'
+      fullPath: '/previews/bubble'
+      preLoaderRoute: typeof PreviewsBubbleRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
     '/previews/badge': {
@@ -1025,10 +1120,12 @@ interface PreviewsRouteRouteChildren {
   PreviewsAttachmentRoute: typeof PreviewsAttachmentRoute
   PreviewsAvatarRoute: typeof PreviewsAvatarRoute
   PreviewsBadgeRoute: typeof PreviewsBadgeRoute
+  PreviewsBubbleRoute: typeof PreviewsBubbleRoute
   PreviewsButtonRoute: typeof PreviewsButtonRoute
   PreviewsButtonGroupsRoute: typeof PreviewsButtonGroupsRoute
   PreviewsCardRoute: typeof PreviewsCardRoute
   PreviewsCheckboxRoute: typeof PreviewsCheckboxRoute
+  PreviewsCollapsibleRoute: typeof PreviewsCollapsibleRoute
   PreviewsComboboxRoute: typeof PreviewsComboboxRoute
   PreviewsCommandRoute: typeof PreviewsCommandRoute
   PreviewsDatePickerRoute: typeof PreviewsDatePickerRoute
@@ -1042,8 +1139,11 @@ interface PreviewsRouteRouteChildren {
   PreviewsInputRoute: typeof PreviewsInputRoute
   PreviewsInputGroupRoute: typeof PreviewsInputGroupRoute
   PreviewsKbdRoute: typeof PreviewsKbdRoute
+  PreviewsMarkerRoute: typeof PreviewsMarkerRoute
+  PreviewsMessageRoute: typeof PreviewsMessageRoute
   PreviewsPaginationRoute: typeof PreviewsPaginationRoute
   PreviewsPopoverRoute: typeof PreviewsPopoverRoute
+  PreviewsProgressRoute: typeof PreviewsProgressRoute
   PreviewsRadioGroupRoute: typeof PreviewsRadioGroupRoute
   PreviewsSelectRoute: typeof PreviewsSelectRoute
   PreviewsSeparatorRoute: typeof PreviewsSeparatorRoute
@@ -1065,10 +1165,12 @@ const PreviewsRouteRouteChildren: PreviewsRouteRouteChildren = {
   PreviewsAttachmentRoute: PreviewsAttachmentRoute,
   PreviewsAvatarRoute: PreviewsAvatarRoute,
   PreviewsBadgeRoute: PreviewsBadgeRoute,
+  PreviewsBubbleRoute: PreviewsBubbleRoute,
   PreviewsButtonRoute: PreviewsButtonRoute,
   PreviewsButtonGroupsRoute: PreviewsButtonGroupsRoute,
   PreviewsCardRoute: PreviewsCardRoute,
   PreviewsCheckboxRoute: PreviewsCheckboxRoute,
+  PreviewsCollapsibleRoute: PreviewsCollapsibleRoute,
   PreviewsComboboxRoute: PreviewsComboboxRoute,
   PreviewsCommandRoute: PreviewsCommandRoute,
   PreviewsDatePickerRoute: PreviewsDatePickerRoute,
@@ -1082,8 +1184,11 @@ const PreviewsRouteRouteChildren: PreviewsRouteRouteChildren = {
   PreviewsInputRoute: PreviewsInputRoute,
   PreviewsInputGroupRoute: PreviewsInputGroupRoute,
   PreviewsKbdRoute: PreviewsKbdRoute,
+  PreviewsMarkerRoute: PreviewsMarkerRoute,
+  PreviewsMessageRoute: PreviewsMessageRoute,
   PreviewsPaginationRoute: PreviewsPaginationRoute,
   PreviewsPopoverRoute: PreviewsPopoverRoute,
+  PreviewsProgressRoute: PreviewsProgressRoute,
   PreviewsRadioGroupRoute: PreviewsRadioGroupRoute,
   PreviewsSelectRoute: PreviewsSelectRoute,
   PreviewsSeparatorRoute: PreviewsSeparatorRoute,

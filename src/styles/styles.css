@@ -108,7 +108,7 @@
   }
 }
 
-@keyframes slideDown {
+@keyframes accordionDown {
   from {
     opacity: 0.01;
     height: 0;
@@ -119,7 +119,7 @@
   }
 }
 
-@keyframes slideUp {
+@keyframes accordionUp {
   from {
     opacity: 1;
     height: var(--height);
@@ -131,9 +131,45 @@
 }
 
 [data-scope="accordion"][data-part="item-content"][data-state="open"] {
-  animation: slideDown 250ms ease-in-out;
+  animation: accordionDown 250ms ease-in-out;
 }
 
 [data-scope="accordion"][data-part="item-content"][data-state="closed"] {
-  animation: slideUp 200ms ease-in-out;
+  animation: accordionUp 200ms ease-in-out;
+}
+
+/* Dedicated keyframes (vs. accordion's slideDown/Up) so partial collapse can
+   animate to/from --collapsed-height instead of 0. Falls back to 0 when unset. */
+@keyframes collapsibleDown {
+  from {
+    height: var(--collapsed-height, 0);
+  }
+  to {
+    height: var(--height);
+  }
+}
+
+@keyframes collapsibleUp {
+  from {
+    height: var(--height);
+  }
+  to {
+    height: var(--collapsed-height, 0);
+  }
+}
+
+[data-scope="collapsible"][data-part="content"][data-state="open"] {
+  animation: collapsibleDown 250ms ease-in-out;
+}
+
+[data-scope="collapsible"][data-part="content"][data-state="closed"] {
+  animation: collapsibleUp 200ms ease-in-out;
+}
+
+[data-scope="collapsible"][data-part="indicator"] {
+  transition: transform 200ms;
+}
+
+[data-scope="collapsible"][data-part="indicator"][data-state="open"] {
+  transform: rotate(90deg);
 }

@@ -121,6 +121,7 @@ export function Button(rawProps: ButtonProps) {
 
   return (
     <ark.button
+      data-slot="button"
       class={cn(
         buttonVariants({ variant: local.variant, size: local.size }),
         local.class,
