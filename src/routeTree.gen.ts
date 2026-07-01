@@ -23,9 +23,11 @@ import { Route as PreviewsSliderRouteImport } from './routes/previews/slider'
 import { Route as PreviewsSheetRouteImport } from './routes/previews/sheet'
 import { Route as PreviewsSeparatorRouteImport } from './routes/previews/separator'
 import { Route as PreviewsSelectRouteImport } from './routes/previews/select'
+import { Route as PreviewsRingRouteImport } from './routes/previews/ring'
 import { Route as PreviewsRadioGroupRouteImport } from './routes/previews/radio-group'
 import { Route as PreviewsProgressRouteImport } from './routes/previews/progress'
 import { Route as PreviewsPopoverRouteImport } from './routes/previews/popover'
+import { Route as PreviewsPinInputRouteImport } from './routes/previews/pin-input'
 import { Route as PreviewsPaginationRouteImport } from './routes/previews/pagination'
 import { Route as PreviewsMessageRouteImport } from './routes/previews/message'
 import { Route as PreviewsMarkerRouteImport } from './routes/previews/marker'
@@ -48,6 +50,7 @@ import { Route as PreviewsCardRouteImport } from './routes/previews/card'
 import { Route as PreviewsButtonGroupsRouteImport } from './routes/previews/button-groups'
 import { Route as PreviewsButtonRouteImport } from './routes/previews/button'
 import { Route as PreviewsBubbleRouteImport } from './routes/previews/bubble'
+import { Route as PreviewsBreadcrumbRouteImport } from './routes/previews/breadcrumb'
 import { Route as PreviewsBadgeRouteImport } from './routes/previews/badge'
 import { Route as PreviewsAvatarRouteImport } from './routes/previews/avatar'
 import { Route as PreviewsAttachmentRouteImport } from './routes/previews/attachment'
@@ -135,6 +138,11 @@ const PreviewsSelectRoute = PreviewsSelectRouteImport.update({
   path: '/select',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
+const PreviewsRingRoute = PreviewsRingRouteImport.update({
+  id: '/ring',
+  path: '/ring',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
 const PreviewsRadioGroupRoute = PreviewsRadioGroupRouteImport.update({
   id: '/radio-group',
   path: '/radio-group',
@@ -148,6 +156,11 @@ const PreviewsProgressRoute = PreviewsProgressRouteImport.update({
 const PreviewsPopoverRoute = PreviewsPopoverRouteImport.update({
   id: '/popover',
   path: '/popover',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
+const PreviewsPinInputRoute = PreviewsPinInputRouteImport.update({
+  id: '/pin-input',
+  path: '/pin-input',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
 const PreviewsPaginationRoute = PreviewsPaginationRouteImport.update({
@@ -260,6 +273,11 @@ const PreviewsBubbleRoute = PreviewsBubbleRouteImport.update({
   path: '/bubble',
   getParentRoute: () => PreviewsRouteRoute,
 } as any)
+const PreviewsBreadcrumbRoute = PreviewsBreadcrumbRouteImport.update({
+  id: '/breadcrumb',
+  path: '/breadcrumb',
+  getParentRoute: () => PreviewsRouteRoute,
+} as any)
 const PreviewsBadgeRoute = PreviewsBadgeRouteImport.update({
   id: '/badge',
   path: '/badge',
@@ -353,6 +371,7 @@ export interface FileRoutesByFullPath {
   '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
+  '/previews/breadcrumb': typeof PreviewsBreadcrumbRoute
   '/previews/bubble': typeof PreviewsBubbleRoute
   '/previews/button': typeof PreviewsButtonRoute
   '/previews/button-groups': typeof PreviewsButtonGroupsRoute
@@ -375,9 +394,11 @@ export interface FileRoutesByFullPath {
   '/previews/marker': typeof PreviewsMarkerRoute
   '/previews/message': typeof PreviewsMessageRoute
   '/previews/pagination': typeof PreviewsPaginationRoute
+  '/previews/pin-input': typeof PreviewsPinInputRoute
   '/previews/popover': typeof PreviewsPopoverRoute
   '/previews/progress': typeof PreviewsProgressRoute
   '/previews/radio-group': typeof PreviewsRadioGroupRoute
+  '/previews/ring': typeof PreviewsRingRoute
   '/previews/select': typeof PreviewsSelectRoute
   '/previews/separator': typeof PreviewsSeparatorRoute
   '/previews/sheet': typeof PreviewsSheetRoute
@@ -409,6 +430,7 @@ export interface FileRoutesByTo {
   '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
+  '/previews/breadcrumb': typeof PreviewsBreadcrumbRoute
   '/previews/bubble': typeof PreviewsBubbleRoute
   '/previews/button': typeof PreviewsButtonRoute
   '/previews/button-groups': typeof PreviewsButtonGroupsRoute
@@ -430,9 +452,11 @@ export interface FileRoutesByTo {
   '/previews/marker': typeof PreviewsMarkerRoute
   '/previews/message': typeof PreviewsMessageRoute
   '/previews/pagination': typeof PreviewsPaginationRoute
+  '/previews/pin-input': typeof PreviewsPinInputRoute
   '/previews/popover': typeof PreviewsPopoverRoute
   '/previews/progress': typeof PreviewsProgressRoute
   '/previews/radio-group': typeof PreviewsRadioGroupRoute
+  '/previews/ring': typeof PreviewsRingRoute
   '/previews/select': typeof PreviewsSelectRoute
   '/previews/separator': typeof PreviewsSeparatorRoute
   '/previews/sheet': typeof PreviewsSheetRoute
@@ -466,6 +490,7 @@ export interface FileRoutesById {
   '/previews/attachment': typeof PreviewsAttachmentRoute
   '/previews/avatar': typeof PreviewsAvatarRoute
   '/previews/badge': typeof PreviewsBadgeRoute
+  '/previews/breadcrumb': typeof PreviewsBreadcrumbRoute
   '/previews/bubble': typeof PreviewsBubbleRoute
   '/previews/button': typeof PreviewsButtonRoute
   '/previews/button-groups': typeof PreviewsButtonGroupsRoute
@@ -488,9 +513,11 @@ export interface FileRoutesById {
   '/previews/marker': typeof PreviewsMarkerRoute
   '/previews/message': typeof PreviewsMessageRoute
   '/previews/pagination': typeof PreviewsPaginationRoute
+  '/previews/pin-input': typeof PreviewsPinInputRoute
   '/previews/popover': typeof PreviewsPopoverRoute
   '/previews/progress': typeof PreviewsProgressRoute
   '/previews/radio-group': typeof PreviewsRadioGroupRoute
+  '/previews/ring': typeof PreviewsRingRoute
   '/previews/select': typeof PreviewsSelectRoute
   '/previews/separator': typeof PreviewsSeparatorRoute
   '/previews/sheet': typeof PreviewsSheetRoute
@@ -525,6 +552,7 @@ export interface FileRouteTypes {
     | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
+    | '/previews/breadcrumb'
     | '/previews/bubble'
     | '/previews/button'
     | '/previews/button-groups'
@@ -547,9 +575,11 @@ export interface FileRouteTypes {
     | '/previews/marker'
     | '/previews/message'
     | '/previews/pagination'
+    | '/previews/pin-input'
     | '/previews/popover'
     | '/previews/progress'
     | '/previews/radio-group'
+    | '/previews/ring'
     | '/previews/select'
     | '/previews/separator'
     | '/previews/sheet'
@@ -581,6 +611,7 @@ export interface FileRouteTypes {
     | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
+    | '/previews/breadcrumb'
     | '/previews/bubble'
     | '/previews/button'
     | '/previews/button-groups'
@@ -602,9 +633,11 @@ export interface FileRouteTypes {
     | '/previews/marker'
     | '/previews/message'
     | '/previews/pagination'
+    | '/previews/pin-input'
     | '/previews/popover'
     | '/previews/progress'
     | '/previews/radio-group'
+    | '/previews/ring'
     | '/previews/select'
     | '/previews/separator'
     | '/previews/sheet'
@@ -637,6 +670,7 @@ export interface FileRouteTypes {
     | '/previews/attachment'
     | '/previews/avatar'
     | '/previews/badge'
+    | '/previews/breadcrumb'
     | '/previews/bubble'
     | '/previews/button'
     | '/previews/button-groups'
@@ -659,9 +693,11 @@ export interface FileRouteTypes {
     | '/previews/marker'
     | '/previews/message'
     | '/previews/pagination'
+    | '/previews/pin-input'
     | '/previews/popover'
     | '/previews/progress'
     | '/previews/radio-group'
+    | '/previews/ring'
     | '/previews/select'
     | '/previews/separator'
     | '/previews/sheet'
@@ -792,6 +828,13 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof PreviewsSelectRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
+    '/previews/ring': {
+      id: '/previews/ring'
+      path: '/ring'
+      fullPath: '/previews/ring'
+      preLoaderRoute: typeof PreviewsRingRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
     '/previews/radio-group': {
       id: '/previews/radio-group'
       path: '/radio-group'
@@ -811,6 +854,13 @@ declare module '@tanstack/solid-router' {
       path: '/popover'
       fullPath: '/previews/popover'
       preLoaderRoute: typeof PreviewsPopoverRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
+    '/previews/pin-input': {
+      id: '/previews/pin-input'
+      path: '/pin-input'
+      fullPath: '/previews/pin-input'
+      preLoaderRoute: typeof PreviewsPinInputRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
     '/previews/pagination': {
@@ -967,6 +1017,13 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof PreviewsBubbleRouteImport
       parentRoute: typeof PreviewsRouteRoute
     }
+    '/previews/breadcrumb': {
+      id: '/previews/breadcrumb'
+      path: '/breadcrumb'
+      fullPath: '/previews/breadcrumb'
+      preLoaderRoute: typeof PreviewsBreadcrumbRouteImport
+      parentRoute: typeof PreviewsRouteRoute
+    }
     '/previews/badge': {
       id: '/previews/badge'
       path: '/badge'
@@ -1120,6 +1177,7 @@ interface PreviewsRouteRouteChildren {
   PreviewsAttachmentRoute: typeof PreviewsAttachmentRoute
   PreviewsAvatarRoute: typeof PreviewsAvatarRoute
   PreviewsBadgeRoute: typeof PreviewsBadgeRoute
+  PreviewsBreadcrumbRoute: typeof PreviewsBreadcrumbRoute
   PreviewsBubbleRoute: typeof PreviewsBubbleRoute
   PreviewsButtonRoute: typeof PreviewsButtonRoute
   PreviewsButtonGroupsRoute: typeof PreviewsButtonGroupsRoute
@@ -1142,9 +1200,11 @@ interface PreviewsRouteRouteChildren {
   PreviewsMarkerRoute: typeof PreviewsMarkerRoute
   PreviewsMessageRoute: typeof PreviewsMessageRoute
   PreviewsPaginationRoute: typeof PreviewsPaginationRoute
+  PreviewsPinInputRoute: typeof PreviewsPinInputRoute
   PreviewsPopoverRoute: typeof PreviewsPopoverRoute
   PreviewsProgressRoute: typeof PreviewsProgressRoute
   PreviewsRadioGroupRoute: typeof PreviewsRadioGroupRoute
+  PreviewsRingRoute: typeof PreviewsRingRoute
   PreviewsSelectRoute: typeof PreviewsSelectRoute
   PreviewsSeparatorRoute: typeof PreviewsSeparatorRoute
   PreviewsSheetRoute: typeof PreviewsSheetRoute
@@ -1165,6 +1225,7 @@ const PreviewsRouteRouteChildren: PreviewsRouteRouteChildren = {
   PreviewsAttachmentRoute: PreviewsAttachmentRoute,
   PreviewsAvatarRoute: PreviewsAvatarRoute,
   PreviewsBadgeRoute: PreviewsBadgeRoute,
+  PreviewsBreadcrumbRoute: PreviewsBreadcrumbRoute,
   PreviewsBubbleRoute: PreviewsBubbleRoute,
   PreviewsButtonRoute: PreviewsButtonRoute,
   PreviewsButtonGroupsRoute: PreviewsButtonGroupsRoute,
@@ -1187,9 +1248,11 @@ const PreviewsRouteRouteChildren: PreviewsRouteRouteChildren = {
   PreviewsMarkerRoute: PreviewsMarkerRoute,
   PreviewsMessageRoute: PreviewsMessageRoute,
   PreviewsPaginationRoute: PreviewsPaginationRoute,
+  PreviewsPinInputRoute: PreviewsPinInputRoute,
   PreviewsPopoverRoute: PreviewsPopoverRoute,
   PreviewsProgressRoute: PreviewsProgressRoute,
   PreviewsRadioGroupRoute: PreviewsRadioGroupRoute,
+  PreviewsRingRoute: PreviewsRingRoute,
   PreviewsSelectRoute: PreviewsSelectRoute,
   PreviewsSeparatorRoute: PreviewsSeparatorRoute,
   PreviewsSheetRoute: PreviewsSheetRoute,

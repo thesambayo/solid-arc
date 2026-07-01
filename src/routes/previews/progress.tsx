@@ -8,11 +8,7 @@ import {
   ProgressTrack,
   ProgressValueText,
 } from "../../components/ui/progress";
-import {
-  Slider,
-  SliderControl,
-  SliderThumb,
-} from "../../components/ui/slider";
+import { Slider, SliderControl, SliderThumb } from "../../components/ui/slider";
 
 export const Route = createFileRoute("/previews/progress")({
   component: RouteComponent,
@@ -42,7 +38,7 @@ function RouteComponent() {
       </div>
 
       <Section title="Basic">
-        <Progress value={33} class="max-w-sm">
+        <Progress defaultValue={33} class="max-w-sm">
           <ProgressTrack>
             <ProgressRange />
           </ProgressTrack>
@@ -50,7 +46,7 @@ function RouteComponent() {
       </Section>
 
       <Section title="With label and value">
-        <Progress value={56} class="max-w-sm">
+        <Progress defaultValue={56} class="max-w-sm">
           <ProgressLabel>Upload progress</ProgressLabel>
           <ProgressValueText />
           <ProgressTrack>
@@ -60,8 +56,8 @@ function RouteComponent() {
       </Section>
 
       <Section title="Min and max">
-        <Progress value={20} min={10} max={30} class="max-w-sm">
-          <ProgressLabel>Loading</ProgressLabel>
+        <Progress defaultValue={25} min={0} max={50} class="max-w-sm">
+          <ProgressLabel>Min (0), Max (50)</ProgressLabel>
           <ProgressValueText />
           <ProgressTrack>
             <ProgressRange />
@@ -90,7 +86,7 @@ function RouteComponent() {
       </Section>
 
       <Section title="Indeterminate">
-        <Progress value={null} class="max-w-sm">
+        <Progress defaultValue={null} class="max-w-sm">
           <ProgressLabel>Working…</ProgressLabel>
           <ProgressValueText />
           <ProgressTrack>

@@ -20,7 +20,8 @@ can be pulled into other projects instead of living only inside this app.
 Ark UI primitives / common shadcn components not yet ported.
 - [x] Separator  *(implemented — component, preview, sidebar entry)*
 - [x] Attachment  *(implemented — media/content/actions/trigger/group, states, preview)*
-- [x] Progress  *(implemented — root/label/value-text/track/range, h+v orientation, indeterminate; preview, sidebar entry)*
+- [x] Progress  *(implemented — root/label/value-text/track/range, h+v orientation, indeterminate; preview, sidebar entry. Later extended with circle/circle-track/circle-range for the circular variant — see Ring. Indeterminate now actually animates (sliding shimmer / traveling arc) instead of rendering a static shape — Ark clears width/dasharray when value=null and expects consumer CSS for the `[data-state=indeterminate]` visual, per its styling guide. Also fixed a double-rotation bug: `ProgressCircle` no longer applies its own `-rotate-90` since Ark's `CircleRange` already rotates -90deg internally (zag-js v1.41.2) — the extra rotation was putting the arc start at 6 o'clock instead of 12)*
+- [x] Ring  *(user-contributed, ported from an app, then redesigned for correctness — circular gauge composing the Progress circle primitives. Now extends Ark `Progress.Root` props verbatim (no more custom `value: number|null` that shadowed Ark and broke indeterminate); adds only `size`/`stroke`/`label`/`tone`. Indeterminate is `defaultValue={null}` (a controlled `value={null}` is ambiguous → Ark falls back to default = determinate). Uptime threshold coloring moved out of the library into an app helper in the preview — lib provides the `tone` mechanism, app owns the policy. own `ui/ring/` folder; preview, sidebar entry)*
 - [ ] Skeleton
 - [x] Collapsible  *(implemented — root/trigger/indicator/content, height + partial-collapse animation, rotating indicator, disabled/nested/controlled; preview, sidebar entry)*
 - [x] Bubble  *(new shadcn component — presentational; root/content/reactions/group, 7 variants, start/end align, asChild link/button content, reactions side/align, collapsible compose; preview, sidebar entry)*
@@ -41,13 +42,14 @@ Ark UI primitives / common shadcn components not yet ported.
       `preserveScrollOnPrepend` (the fiddly one), `data-autoscrolling`,
       `content-visibility:auto` rows. Composes the Message component as rows.
       **Decide scope when picking up:** core-behavior MVP vs full fidelity.
-- [ ] Breadcrumb
+- [x] Breadcrumb  *(implemented — root/list/item/link/page/separator/ellipsis, asChild polymorphic link (router Link compatible), custom separator, dropdown + collapsed-ellipsis compose with DropdownMenu; preview, sidebar entry)*
 - [ ] Carousel
 - [ ] Menubar
 - [ ] Navigation Menu
 - [ ] Resizable / Splitter
 - [ ] Scroll Area
-- [ ] Number Input / Pin Input / Editable / Rating / Color Picker / Tree View
+- [x] Pin Input  *(implemented on Ark's PinInput — root/label/control/input/hidden-input/separator; numeric/alphanumeric/mask/otp/disabled/invalid/controlled; individually-boxed gapped slots (not shadcn's input-otp connected look — that lib is React-only); re-exports usePinInput/RootProvider; preview, sidebar entry)*
+- [ ] Number Input / Editable / Rating / Color Picker / Tree View
       *(Ark has primitives; decide which are in scope)*
 
 ---

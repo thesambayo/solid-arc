@@ -93,4 +93,66 @@ function ProgressRange(props: ComponentProps<typeof ProgressPrimitive.Range>) {
   );
 }
 
-export { Progress, ProgressLabel, ProgressValueText, ProgressTrack, ProgressRange };
+// ─── Circle ───────────────────────────────────────────────────────────────────
+// Circular variant of Progress. Size via the `--size`/`--thickness` CSS vars
+// Ark exposes on this element (see Ark's progress styling guide). Ark already
+// rotates CircleRange -90deg internally so 0% starts at 12 o'clock — don't
+// add another rotation here, it would double up to 6 o'clock.
+
+function ProgressCircle(
+  props: ComponentProps<typeof ProgressPrimitive.Circle>,
+) {
+  const [local, rest] = splitProps(props, ["class"]);
+  return (
+    <ProgressPrimitive.Circle
+      data-slot="progress-circle"
+      class={cn(local.class)}
+      {...rest}
+    />
+  );
+}
+
+// ─── CircleTrack ──────────────────────────────────────────────────────────────
+
+function ProgressCircleTrack(
+  props: ComponentProps<typeof ProgressPrimitive.CircleTrack>,
+) {
+  const [local, rest] = splitProps(props, ["class"]);
+  return (
+    <ProgressPrimitive.CircleTrack
+      data-slot="progress-circle-track"
+      class={cn("stroke-border", local.class)}
+      {...rest}
+    />
+  );
+}
+
+// ─── CircleRange ──────────────────────────────────────────────────────────────
+// Ark sizes this via stroke-dasharray/dashoffset computed from --percent.
+
+function ProgressCircleRange(
+  props: ComponentProps<typeof ProgressPrimitive.CircleRange>,
+) {
+  const [local, rest] = splitProps(props, ["class"]);
+  return (
+    <ProgressPrimitive.CircleRange
+      data-slot="progress-circle-range"
+      class={cn(
+        "stroke-foreground transition-[stroke-dashoffset] duration-500 ease-out",
+        local.class,
+      )}
+      {...rest}
+    />
+  );
+}
+
+export {
+  Progress,
+  ProgressLabel,
+  ProgressValueText,
+  ProgressTrack,
+  ProgressRange,
+  ProgressCircle,
+  ProgressCircleTrack,
+  ProgressCircleRange,
+};

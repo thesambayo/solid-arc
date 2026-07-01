@@ -4,4 +4,7 @@ export {
   ProgressValueText,
   ProgressTrack,
   ProgressRange,
+  ProgressCircle,
+  ProgressCircleTrack,
+  ProgressCircleRange,
 } from "./progress";
